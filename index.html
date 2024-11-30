@@ -1,0 +1,67 @@
+-de<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Home</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <section>
+      <h2>svg path</h2>
+      <div class="motion wrap color-svg">
+        <div class="circle el"></div>
+        <svg width="256" height="112" viewBox="0 0 256 112">
+          <path
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1"
+            d="M8,56 C8,33.90861 25.90861,16 48,16 C70.09139,16 88,33.90861 88,56 C88,78.09139 105.90861,92 128,92 C150.09139,92 160,72 160,56 C160,40 148,24 128,24 C108,24 96,40 96,56 C96,72 105.90861,92 128,92 C154,93 168,78 168,56 C168,33.90861 185.90861,16 208,16 C230.09139,16 248,33.90861 248,56 C248,78.09139 230.09139,96 208,96 L48,96 C25.90861,96 8,78.09139 8,56 Z"
+          ></path>
+        </svg>
+      </div>
+    </section>
+
+    <section>
+      <h2>svg drawing</h2>
+      <div class="drawing wrap color-svg">
+        <svg width="256" height="112" viewBox="0 0 256 112">
+          <path
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1"
+            d="M8,56 C8,33.90861 25.90861,16 48,16 C70.09139,16 88,33.90861 88,56 C88,78.09139 105.90861,92 128,92 C150.09139,92 160,72 160,56 C160,40 148,24 128,24 C108,24 96,40 96,56 C96,72 105.90861,92 128,92 C154,93 168,78 168,56 C168,33.90861 185.90861,16 208,16 C230.09139,16 248,33.90861 248,56 C248,78.09139 230.09139,96 208,96 L48,96 C25.90861,96 8,78.09139 8,56 Z"
+          ></path>
+        </svg>
+      </div>
+    </section>
+  </body>
+  <script src="https://cdn.bootcdn.net/ajax/libs/animejs/3.2.2/anime.min.js"></script>
+  <script>
+    window.onload = function () {
+      var path = anime.path('.motion path');
+
+      anime({
+        targets: '.motion .el',
+        translateX: path('x'),
+        translateY: path('y'),
+        rotate: path('angle'),
+        easing: 'linear',
+        duration: 2000,
+        loop: true,
+      });
+
+      anime({
+        targets: '.drawing path',
+        strokeDashoffset: [anime.setDashoffset, 0],
+        easing: 'easeInOutSine',
+        duration: 1500,
+        delay: function (el, i) {
+          return i * 250;
+        },
+        direction: 'alternate',
+        loop: true,
+      });
+    };
+  </script>
+</html>
